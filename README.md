@@ -2,7 +2,14 @@
 
 A MuJoCo-based simulator for flying an AUV (submarine) through a course. Run the viewer to look around the course, or run the sub with keyboard control.
 
-## Requirements
+1) Install Python 3.12+ and Git Bash if on Windows. Make sure Python is added to path in the install.
+2) Clone this repository on your local computer.
+3) Open your terminal (or Git Bash) and get into the folder you cloned
+4) Create a virtual environment. This can be done using 'python -m venv sim'.
+5) Activate the virtual environment. From where you created it, run either 'source sim/Scripts/activate' or 'source sim/bin/activate'
+6) Run the following line to install Mujoco and other required packages: 'pip install mujoco numpy trimesh scipy pillow matplotlib fast-simplification'
+7) Afterwards, run 'python -m mujoco.viewer --mjcf=build/course.xml' to open the course.
+8) To run it with the sub and control it, run 'python fly_auv.py' in 1 terminal and in a second terminal, run 'python auv_keyboard.py' and remain focused on the small popup window.
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) (manages Python and packages for you)
 - [Git](https://git-scm.com/downloads) (on Windows, install Git Bash too)
