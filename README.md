@@ -3,7 +3,7 @@ This is the repository for the sub simulator, built in MuJoco.
 
 # How to Install and Run
 
-1) Install Python 3.10+ and Git Bash if on Windows. Make sure Python is added to path in the install.
+1) Install Python 3.12+ and Git Bash if on Windows. Make sure Python is added to path in the install.
 2) Clone this repository on your local computer.
 3) Open your terminal (or Git Bash) and get into the folder you cloned
 4) Create a virtual environment. This can be done using 'python -m venv sim'.
