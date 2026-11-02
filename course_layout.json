@@ -1,0 +1,58 @@
+{
+  "_readme": [
+    "Layout for build_course.py. World frame: origin at the pool centre, +x toward section D, +y toward the TOP of the map image, +z up, water surface at z = 0.",
+    "map_px = [column, row] pixel on the 1920x992 top-view map. Pool calibration below was measured from that image (pool edges and red section dividers).",
+    "To move a prop: edit its map_px, or replace it with xy_m = [x, y] in metres (xy_m wins if both are given).",
+    "yaw_deg: counter-clockwise as seen from above (same sense as the map). For meshes with align = principal, the mesh's longest horizontal axis is rotated to point this way (mod 180).",
+    "rotate_deg (optional, per mesh): [rx, ry, rz] degrees about the world x, y, z axes (right-hand rule, applied in that order) after the up-axis fix, e.g. [0, 90, 0] turns a part about the y axis. yaw_deg on an item still turns it about the vertical axis on the map.",
+    "anchor: floor = bottom of the mesh rests on the pool floor; surface = top of the mesh touches the water surface (hanging); z = bottom of the mesh at z_m."
+  ],
+
+  "pool": {
+    "length_m": 50.0,
+    "width_m": 22.86,
+    "depth_m": 2.134,
+    "wall_thickness_m": 0.5
+  },
+
+  "map": {
+    "px_left": 153.5,
+    "px_right": 1253.5,
+    "px_top": 224.0,
+    "px_bottom": 725.0,
+    "section_dividers_px_x": [438.5, 709.5, 1010.0],
+    "section_names": ["A", "B", "C", "D"]
+  },
+
+  "mesh_defaults": {
+    "units": "auto",
+    "up_axis": "y"
+  },
+
+  "props_collide": false,
+
+  "meshes": {
+    "Gate2.stl":                {"align": "principal", "anchor": "surface", "rgba": [0.92, 0.92, 0.92, 1]},
+    "Task02_Debris_Full.stl":   {"align": "principal", "anchor": "floor", "rotate_deg": [-90, 0, 0], "rgba": [0.85, 0.85, 0.85, 1]},
+    "Task03_PipelineBins.stl":  {"align": "principal", "anchor": "floor",   "rotate_deg": [-90, 0, 0], "rgba": [0.90, 0.35, 0.40, 1]},
+    "Task04_Deploy.stl":        {"align": "none",      "anchor": "floor",   "rgba": [0.90, 0.90, 0.90, 1]},
+    "Task05_Restore.stl":       {"align": "none",      "anchor": "floor",   "rotate_deg": [-90, 0, 0], "rgba": [0.15, 0.15, 0.15, 1]},
+    "rotatedPath.stl":          {"align": "principal", "anchor": "floor",   "rgba": [0.95, 0.50, 0.10, 1]}
+  },
+
+  "items": [
+    {"name": "gate_D",    "file": "Gate2.stl",               "map_px": [1084.5, 311.5], "yaw_deg": 0.0},
+    {"name": "path_D_1",  "file": "rotatedPath.stl",         "map_px": [1106.0, 345.2], "yaw_deg": 126.7},
+    {"name": "debris_D",  "file": "Task02_Debris_Full.stl",  "map_px": [1137.8, 407.1], "yaw_deg": 0.0},
+    {"name": "path_D_2",  "file": "rotatedPath.stl",         "map_px": [1113.0, 443.5], "yaw_deg": 25.5},
+    {"name": "recon_D",   "file": "Task03_PipelineBins.stl", "map_px": [1046.5, 477.0], "yaw_deg": 147.0},
+    {"name": "deploy_D",  "file": "Task04_Deploy.stl",       "map_px": [1091.5, 588.6], "yaw_deg": 14.5},
+    {"name": "restore_D", "file": "Task05_Restore.stl",      "map_px": [1180.6, 654.6], "yaw_deg": 0.0}
+  ],
+
+  "markers": [
+    {"name": "start_D",         "kind": "start",  "map_px": [1084.5, 262.0], "yaw_deg": -90.0, "z_m": -0.6},
+    {"name": "pinger_D_deploy", "kind": "pinger", "map_px": [1095.4, 557.9], "z_above_floor_m": 0.05},
+    {"name": "pinger_D_restore","kind": "pinger", "map_px": [1180.8, 655.1], "z_above_floor_m": 0.05}
+  ]
+}

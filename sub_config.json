@@ -1,0 +1,62 @@
+{
+  "_readme": [
+    "Sub parameters for fly_auv.py. EVERY NUMBER HERE IS A PLACEHOLDER until you replace it with your sub's real values (CAD mass properties, thruster layout).",
+    "Body frame: origin = centre of gravity, +x = nose (forward), +y = left, +z = up. All positions are in metres from the centre of gravity.",
+    "thrusters: pos_m = where the thruster sits, dir = the direction it pushes the sub when given positive thrust (does not need to be unit length).",
+    "The default layout is 4 horizontal thrusters angled 45 degrees at the corners (surge/sway/yaw) + 4 vertical thrusters (heave/pitch/roll).",
+    "fly_auv.py works out the thruster mixing automatically from this table, so a different layout only needs different rows here.",
+    "mesh.file: path to your sub STL (null = draw a plain ellipsoid). The mesh is converted like the course props. Its nose must point +x and its top +z after the fixes;",
+    "use rotate_deg [rx, ry, rz] (degrees, about x, y, z in that order) and offset_m to line it up. offset_m shifts the mesh so the centre of gravity ends up at the body origin."
+  ],
+
+  "mass_kg": 20.0,
+  "buoyancy_ratio": 1.0,
+  "cb_offset_m": [0.0, 0.0, 0.02],
+  "inertia_diag_kgm2": null,
+
+  "hull": {
+    "half_sizes_m": [0.45, 0.22, 0.15],
+    "fluid_coefficients": [0.5, 0.25, 1.5, 0.0, 0.0]
+  },
+
+  "mesh": {
+    "file": null,
+    "units": "auto",
+    "up_axis": "y",
+    "rotate_deg": [0, 0, 0],
+    "center": "bbox",
+    "offset_m": [0, 0, 0],
+    "rgba": [0.2, 0.5, 0.9, 1.0]
+  },
+
+  "thrusters": [
+    {"name": "T1", "pos_m": [ 0.25,  0.20, 0.0], "dir": [ 1, -1, 0]},
+    {"name": "T2", "pos_m": [ 0.25, -0.20, 0.0], "dir": [ 1,  1, 0]},
+    {"name": "T3", "pos_m": [-0.25,  0.20, 0.0], "dir": [ 1,  1, 0]},
+    {"name": "T4", "pos_m": [-0.25, -0.20, 0.0], "dir": [ 1, -1, 0]},
+    {"name": "T5", "pos_m": [ 0.20,  0.20, 0.0], "dir": [ 0,  0, 1]},
+    {"name": "T6", "pos_m": [ 0.20, -0.20, 0.0], "dir": [ 0,  0, 1]},
+    {"name": "T7", "pos_m": [-0.20,  0.20, 0.0], "dir": [ 0,  0, 1]},
+    {"name": "T8", "pos_m": [-0.20, -0.20, 0.0], "dir": [ 0,  0, 1]}
+  ],
+
+  "thruster": {
+    "max_thrust_N": 40.0,
+    "time_constant_s": 0.15
+  },
+
+  "command_scale": {
+    "surge_N": 60.0,
+    "sway_N": 40.0,
+    "heave_N": 60.0,
+    "yaw_Nm": 15.0
+  },
+
+  "start": {
+    "marker": "start_D",
+    "pos_m": null,
+    "yaw_deg": null
+  },
+
+  "failsafe_timeout_s": 0.5
+}

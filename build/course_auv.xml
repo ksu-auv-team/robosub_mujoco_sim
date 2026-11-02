@@ -1,0 +1,82 @@
+<mujoco model="robosub_course">
+  <compiler angle="degree" meshdir="meshes" autolimits="true"/>
+  <option timestep="0.005" gravity="0 0 -9.81" density="1000" viscosity="0.001" integrator="implicitfast"/>
+  <statistic center="19.4659 0 -1.067" extent="16.7"/>
+  <visual>
+    <headlight ambient="0.55 0.55 0.55" diffuse="0.6 0.6 0.6" specular="0 0 0"/>
+    <global azimuth="130" elevation="-28" offwidth="1920" offheight="1080"/>
+    <map znear="0.01" zfar="300"/>
+  </visual>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.55 0.75 0.95" rgb2="0.9 0.95 1" width="64" height="64"/>
+    <mesh name="Gate2" file="Gate2.stl" inertia="shell"/>
+    <mesh name="Task02_Debris_Full" file="Task02_Debris_Full.stl" inertia="shell"/>
+    <mesh name="Task03_PipelineBins" file="Task03_PipelineBins.stl" inertia="shell"/>
+    <mesh name="Task04_Deploy" file="Task04_Deploy.stl" inertia="shell"/>
+    <mesh name="Task05_Restore" file="Task05_Restore.stl" inertia="shell"/>
+    <mesh name="rotatedPath" file="rotatedPath.stl" inertia="shell"/>
+  </asset>
+  <worldbody>
+    <light name="sun" pos="19.4659 0 20" dir="0 0 -1" directional="true" diffuse="0.5 0.5 0.5" castshadow="false"/>
+    <geom name="pool_floor" type="box" pos="0 0 -2.2340" size="25.0000 11.4300 0.1" rgba="0.38 0.78 0.84 1"/>
+    <geom name="wall_west"  type="box" pos="-25.2500 0 -0.9170" size="0.2500 11.9300 1.4170" rgba="0.55 0.80 0.85 1"/>
+    <geom name="wall_east"  type="box" pos="25.2500 0 -0.9170" size="0.2500 11.9300 1.4170" rgba="0.55 0.80 0.85 1"/>
+    <geom name="wall_south" type="box" pos="0 -11.6800 -0.9170" size="25.0000 0.2500 1.4170" rgba="0.55 0.80 0.85 1"/>
+    <geom name="wall_north" type="box" pos="0 11.6800 -0.9170" size="25.0000 0.2500 1.4170" rgba="0.55 0.80 0.85 1"/>
+    <geom name="water_surface" type="box" pos="0 0 -0.01" size="25.0000 11.4300 0.01" rgba="0.1 0.45 0.8 0.12" contype="0" conaffinity="0"/>
+    <geom name="divider_A_B" type="box" pos="-12.0455 0 -0.04" size="0.04 11.4300 0.04" rgba="0.9 0.1 0.1 1" contype="0" conaffinity="0"/>
+    <geom name="divider_B_C" type="box" pos="0.2727 0 -0.04" size="0.04 11.4300 0.04" rgba="0.9 0.1 0.1 1" contype="0" conaffinity="0"/>
+    <geom name="divider_C_D" type="box" pos="13.9318 0 -0.04" size="0.04 11.4300 0.04" rgba="0.9 0.1 0.1 1" contype="0" conaffinity="0"/>
+    <body name="gate_D" pos="17.3182 7.4375 -1.3641" quat="1 0 0 0">
+      <geom name="gate_D_geom" type="mesh" mesh="Gate2" rgba="0.92 0.92 0.92 1" contype="0" conaffinity="0"/>
+    </body>
+    <body name="path_D_1" pos="18.2955 5.8998 -2.134" quat="0.4485 0 0 0.8938">
+      <geom name="path_D_1_geom" type="mesh" mesh="rotatedPath" rgba="0.95 0.5 0.1 1" contype="0" conaffinity="0"/>
+    </body>
+    <body name="debris_D" pos="19.7409 3.0754 -2.134" quat="1 0 0 0">
+      <geom name="debris_D_geom" type="mesh" mesh="Task02_Debris_Full" rgba="0.85 0.85 0.85 1" contype="0" conaffinity="0"/>
+    </body>
+    <body name="path_D_2" pos="18.6136 1.4145 -2.134" quat="0.9753 0 0 0.2207">
+      <geom name="path_D_2_geom" type="mesh" mesh="rotatedPath" rgba="0.95 0.5 0.1 1" contype="0" conaffinity="0"/>
+    </body>
+    <body name="recon_D" pos="15.5909 -0.1141 -2.134" quat="0.284 0 0 0.9588">
+      <geom name="recon_D_geom" type="mesh" mesh="Task03_PipelineBins" rgba="0.9 0.35 0.4 1" contype="0" conaffinity="0"/>
+    </body>
+    <body name="deploy_D" pos="17.6364 -5.2062 -2.134" quat="0.992 0 0 0.1262">
+      <geom name="deploy_D_geom" type="mesh" mesh="Task04_Deploy" rgba="0.9 0.9 0.9 1" contype="0" conaffinity="0"/>
+    </body>
+    <body name="restore_D" pos="21.6864 -8.2177 -2.134" quat="1 0 0 0">
+      <geom name="restore_D_geom" type="mesh" mesh="Task05_Restore" rgba="0.15 0.15 0.15 1" contype="0" conaffinity="0"/>
+    </body>
+    <site name="start_D" type="sphere" pos="17.3182 9.6961 -0.6" size="0.12" rgba="0.2 0.4 1 1"/>
+    <site name="start_D_heading" type="capsule" fromto="17.3182 9.6961 -0.6 17.3182 8.8961 -0.6" size="0.04" rgba="0.2 0.4 1 1"/>
+    <site name="pinger_D_deploy" type="sphere" pos="17.8136 -3.8054 -2.084" size="0.12" rgba="0.1 0.8 0.3 1"/>
+    <site name="pinger_D_restore" type="sphere" pos="21.6955 -8.2406 -2.084" size="0.12" rgba="0.1 0.8 0.3 1"/>
+    <body name="view_target_D" pos="19.4659 0 -1.067"/>
+    <camera name="top_D" pos="19.4659 0 14" euler="0 0 0" fovy="60"/>
+    <camera name="iso_D" pos="10.4659 -9 4" mode="targetbody" target="view_target_D" fovy="60"/>
+    <body name="auv" pos="17.318 9.6961 -0.6" quat="0.70711 0 0 -0.70711">
+      <freejoint name="auv_free"/>
+      <inertial pos="0 0 0" mass="20" diaginertia="0.2836 0.9 1.0036"/>
+      <geom name="auv_hull" type="ellipsoid" size="0.45 0.22 0.15" rgba="0.2 0.5 0.9 0.9" fluidshape="ellipsoid" fluidcoef="0.5 0.25 1.5 0 0"/>
+      <site name="T1" type="cylinder" pos="0.25 0.2 0" zaxis="0.70711 -0.70711 0" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T2" type="cylinder" pos="0.25 -0.2 0" zaxis="0.70711 0.70711 0" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T3" type="cylinder" pos="-0.25 0.2 0" zaxis="0.70711 0.70711 0" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T4" type="cylinder" pos="-0.25 -0.2 0" zaxis="0.70711 -0.70711 0" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T5" type="cylinder" pos="0.2 0.2 0" zaxis="0 0 1" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T6" type="cylinder" pos="0.2 -0.2 0" zaxis="0 0 1" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T7" type="cylinder" pos="-0.2 0.2 0" zaxis="0 0 1" size="0.03 0.05" rgba="1 0.55 0 1"/>
+      <site name="T8" type="cylinder" pos="-0.2 -0.2 0" zaxis="0 0 1" size="0.03 0.05" rgba="1 0.55 0 1"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="T1_motor" site="T1" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T2_motor" site="T2" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T3_motor" site="T3" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T4_motor" site="T4" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T5_motor" site="T5" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T6_motor" site="T6" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T7_motor" site="T7" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+    <motor name="T8_motor" site="T8" gear="0 0 1 0 0 0" ctrlrange="-40 40"/>
+  </actuator>
+</mujoco>
