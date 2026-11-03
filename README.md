@@ -1,6 +1,6 @@
 # AUV Simulator
 
-A MuJoCo-based simulator for flying an AUV (submarine) through a course. Run the viewer to look around the course, or run the sub with keyboard control.
+A [MuJoCo](https://mujoco.readthedocs.io/en/stable/overview.html)-based simulator for flying an AUV (submarine) through a course. Run the viewer to look around the course, or run the sub with keyboard control.
 
 ## Requirements
 
